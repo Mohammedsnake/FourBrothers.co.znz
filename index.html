@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Love Question</title>
+    <link rel="stylesheet" href="ConfessStyles.css">
+    <script src="ConfessJS.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
-    <main>
-        <p>This is an example page built with HTML, CSS, and JavaScript.</p>
-        <button onclick="showMessage()">Click Me for a Surprise!</button>
-    </main>
-    <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
-    </footer>
-    <script src="script.js"></script>
+    <div class="container">
+        <h1>I am MO11, Do you Love me?</h1>
+
+        <p class="question-text">Click Yes or No</p>
+
+        <div class="buttons">
+            <button class="yes" onclick="goToForm()">Yes</button>
+            <button class="no" id="noButton">No</button>
+        </div>
+    </div>
 </body>
+</html>
