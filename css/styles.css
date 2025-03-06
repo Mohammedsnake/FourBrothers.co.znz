@@ -77,7 +77,7 @@ h1, h2 {
     transition: background-color 0.3s ease-in-out;
 }
 
-.cta-button:hover {
+cta-button:hover {
     background-color: #e64a19;
 }
 
@@ -203,4 +203,18 @@ footer {
 img {
     max-width: 100%;
     height: auto; /* Make images responsive */
+}
+
+/* About Us Page Specific Styles */
+
+#about-intro, #our-story, #our-mission, #our-farm, #meet-the-team, #community-involvement, #customer-testimonials, #cta {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#our-farm img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
 }
