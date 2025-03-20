@@ -120,50 +120,6 @@ footer {
 .contact-info p {
     margin: 5px 0;
 }
-//Meet the Team 
-#meet-the-team {
-    background-color: #f9f9f9; /* Light gray background */
-    padding: 40px 20px; /* Padding for spacing */
-    text-align: center; /* Center-align the text */
-}
-
-#meet-the-team h2 {
-    font-size: 2.5rem; /* Larger font size for the header */
-    color: #333; /* Dark text color */
-    margin-bottom: 20px; /* Space below the header */
-    font-weight: bold; /* Make the header bold */
-}
-
-#meet-the-team p {
-    font-size: 1.125rem; /* Slightly larger font for the paragraph */
-    color: #555; /* Medium dark gray color for the text */
-    margin-bottom: 30px; /* Space below the paragraph */
-    line-height: 1.6; /* Increased line height for readability */
-}
-
-#meet-the-team ul {
-    list-style: none; /* Remove the default list bullets */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-}
-
-#meet-the-team ul li {
-    font-size: 1.1rem; /* Slightly larger font for the list items */
-    color: #444; /* Darker text color */
-    margin-bottom: 15px; /* Space between each team member */
-}
-
-#meet-the-team ul li a {
-    color: #007bff; /* Blue color for links */
-    text-decoration: none; /* Remove underline from links */
-    font-weight: bold; /* Make the links bold */
-}
-
-#meet-the-team ul li a:hover {
-    color: #0056b3; /* Darker blue color when hovering */
-    text-decoration: underline; /* Add underline when hovered */
-}
-
 
 .hero-content {
     background: url('assets/hero-background.jpg') no-repeat center center/cover;
@@ -255,19 +211,6 @@ img {
     padding: 60px 20px;
     text-align: center;
 }
-
-//Meet The Team
-#meet-the-team h2 {
-        font-size: 2rem; /* Smaller font size for smaller screens */
-    }
-
-    #meet-the-team p {
-        font-size: 1rem; /* Adjust font size for readability */
-    }
-
-    #meet-the-team ul li {
-        font-size: 1rem; /* Adjust font size for list items */
-    }
 
 #our-farm img {
     max-width: 100%;
