@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MO Mayai - Fresh Egg Delivery in Zanzibar</title>
+    <meta name="description" content="MO Mayai delivers fresh eggs to your doorstep in Zanzibar. Order online for fast delivery of high-quality eggs at affordable prices.">
+    <meta name="keywords" content="fresh eggs, egg delivery, Zanzibar, Tanzania, farm eggs, online egg purchase">
+    <meta property="og:title" content="MO Mayai - Fresh Egg Delivery in Zanzibar">
+    <meta property="og:image" content="https://momayai.com/images/og-image.jpg">
+    
+    <!-- Preload resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="css/responsive.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs">
+    
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    
     <header>
         <div class="container">
             <div class="logo">
                 <h1>MO Mayai</h1>
                 <p>Fresh Eggs Delivered to Your Doorstep</p>
             </div>
-            <nav>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="shop.html">Shop</a></li>
@@ -24,55 +38,139 @@
                     <li><a href="login.html" id="auth-link">Login</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu">
+            <button class="mobile-menu" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="main-nav">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h2>Fresh Eggs Delivered Daily</h2>
-            <p>Order now and get your eggs delivered to your home or business in Zanzibar</p>
-            <a href="shop.html" class="btn">Order Now</a>
-        </div>
-    </section>
+    <main id="main-content">
+        <section class="hero">
+            <div class="container">
+                <h1>Fresh Eggs Delivered Daily in Zanzibar</h1>
+                <p>Order now and get farm-fresh eggs delivered to your home or business within 24 hours</p>
+                <div class="hero-cta">
+                    <a href="shop.html" class="btn btn-primary">Order Now</a>
+                    <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
+                </div>
+            </div>
+        </section>
 
-    <section class="features">
-        <div class="container">
-            <div class="feature-box">
-                <i class="fas fa-truck"></i>
-                <h3>Fast Delivery</h3>
-                <p>Get your eggs delivered within 24 hours</p>
+        <section class="trust-signals">
+            <div class="container">
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Quality Guarantee</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-users"></i>
+                    <span>500+ Happy Customers</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Island-wide Delivery</span>
+                </div>
             </div>
-            <div class="feature-box">
-                <i class="fas fa-egg"></i>
-                <h3>Fresh Quality</h3>
-                <p>Farm-fresh eggs from healthy chickens</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-money-bill-wave"></i>
-                <h3>Affordable Prices</h3>
-                <p>Competitive prices for bulk and retail</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="products-preview">
-        <div class="container">
-            <h2>Our Products</h2>
-            <div class="products-grid" id="featured-products">
-                <!-- Products will be loaded from Firebase -->
+        <section class="features">
+            <div class="container">
+                <div class="feature-box">
+                    <i class="fas fa-truck"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your eggs delivered within 24 hours</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-egg"></i>
+                    <h3>Fresh Quality</h3>
+                    <p>Farm-fresh eggs from healthy chickens</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Affordable Prices</h3>
+                    <p>Competitive prices for bulk and retail</p>
+                </div>
             </div>
-            <a href="shop.html" class="btn">View All Products</a>
-        </div>
-    </section>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Select Your Eggs</h3>
+                        <p>Choose from our fresh egg varieties</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Place Your Order</h3>
+                        <p>Complete your delivery details</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Receive Delivery</h3>
+                        <p>Get fresh eggs at your doorstep</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-preview">
+            <div class="container">
+                <h2>Our Products</h2>
+                <div class="products-grid" id="featured-products">
+                    <!-- Products will be loaded from Firebase -->
+                </div>
+                <a href="shop.html" class="btn">View All Products</a>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2>What Our Customers Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <div class="rating">★★★★★</div>
+                        <p>"The freshest eggs I've ever had in Zanzibar! Delivery was prompt and the eggs were perfect."</p>
+                        <div class="customer">- Aisha M., Stone Town</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="rating">★★★★★</div>
+                        <p>"As a restaurant owner, MO Mayai provides consistent quality that keeps my customers coming back."</p>
+                        <div class="customer">- Jamal K., Paje</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="rating">★★★★☆</div>
+                        <p>"Affordable prices and reliable delivery. My family enjoys fresh eggs every week."</p>
+                        <div class="customer">- Neema S., Nungwi</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h3>Get Special Offers</h3>
+                <p>Subscribe to our newsletter for discounts and updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required aria-label="Your email address">
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
             <div class="footer-section">
                 <h3>MO Mayai</h3>
                 <p>Fresh egg delivery service in Zanzibar</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -81,6 +179,8 @@
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -88,14 +188,34 @@
                 <p><i class="fas fa-phone"></i> +255 123 456 789</p>
                 <p><i class="fas fa-envelope"></i> info@momayai.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Zanzibar, Tanzania</p>
+                <p><i class="fas fa-clock"></i> Mon-Sat: 8am - 6pm</p>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023 MO Mayai. All rights reserved.</p>
+            <p>&copy; <span id="current-year">2023</span> MO Mayai. All rights reserved.</p>
         </div>
     </footer>
 
     <script type="module" src="js/firebase-config.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script>
+        // Mobile menu functionality
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Newsletter form handling
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            // Here you would typically send to your backend
+            alert('Thank you for subscribing! You will receive our next newsletter.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>

@@ -38,14 +38,27 @@
         display: block;
     }
     
-    .features .container {
+    .features .container, 
+    .how-it-works .steps {
         flex-direction: column;
+        gap: 30px;
     }
     
     .feature-box {
         margin: 10px 0;
     }
+    .hero {
+        padding: 80px 20px;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
     
+    .hero-cta {
+        flex-direction: column;
+        gap: 10px;
+    }
+        
     .hero h2 {
         font-size: 2.2rem;
     }
@@ -62,11 +75,47 @@
         margin-bottom: 10px;
         width: 100%;
     }
+    .trust-signals .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form input,
+    .newsletter-form button {
+        border-radius: 4px;
+        width: 100%;
+    }
+    
+    .newsletter-form button {
+        margin-top: 10px;
+    }
+    
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
 }
 
 /* Tablet Styles */
 @media (min-width: 769px) and (max-width: 1024px) {
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 15px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .testimonial-grid {
+        grid-template-columns: 1fr;
     }
 }
