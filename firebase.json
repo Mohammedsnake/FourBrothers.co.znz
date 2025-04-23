@@ -1,0 +1,27 @@
+{
+    "products": {
+      "product1": {
+        "name": "Regular Eggs (Tray)",
+        "description": "30 fresh regular eggs per tray",
+        "price": 12000,
+        "category": "regular",
+        "imageUrl": "https://example.com/regular-eggs.jpg"
+      },
+      "product2": {
+        "name": "Organic Eggs (Tray)",
+        "description": "30 premium organic eggs per tray",
+        "price": 18000,
+        "category": "organic",
+        "imageUrl": "https://example.com/organic-eggs.jpg"
+      },
+      "product3": {
+        "name": "Premium Eggs (Tray)",
+        "description": "30 premium quality eggs per tray",
+        "price": 15000,
+        "category": "premium",
+        "imageUrl": "https://example.com/premium-eggs.jpg"
+      }
+    },
+    "orders": {}
+  }
+  

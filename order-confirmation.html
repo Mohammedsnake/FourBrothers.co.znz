@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - MO Mayai</title>
+    <style>
+        :root {
+            --primary-color: #FFA500;
+            --secondary-color: #FF8C00;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+        }
+
+        .confirmation-icon {
+            font-size: 50px;
+            color: var(--success-color);
+            margin-bottom: 20px;
+        }
+
+        .order-details {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .order-details p {
+            font-size: 1.1rem;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .back-home:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎉 Order Confirmed!</h1>
+    <p>Thank you for placing an order with MO Mayai.</p>
+
+    <div class="order-details">
+        <p><strong>Order Number:</strong> #<span id="order-id">12345</span></p>
+        <p><strong>Estimated Delivery:</strong> Within 24 hours</p>
+        <p><strong>Delivery Address:</strong> <span id="delivery-address">Your Address Here</span></p>
+        <p>We will send you updates via SMS or email.</p>
+    </div>
+
+    <a href="index.html" class="back-home">Return to Homepage</a>
+</div>
+
+<script>
+    // Simulate fetching order details (these would normally come from a database)
+    document.getElementById("order-id").textContent = Math.floor(Math.random() * 1000000);
+    document.getElementById("delivery-address").textContent = localStorage.getItem("userAddress") || "Your Address Here";
+</script>
+
+</body>
+</html>

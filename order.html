@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MO Mayai</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Order page specific styles */
+        .order-container {
+            padding: 30px 0;
+            margin-top: 70px;
+        }
+        
+        .order-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .order-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ddd;
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ddd;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+        
+        .step.active .step-number {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .step.completed .step-number::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+        
+        .step-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .step.active .step-text {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .order-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .order-form {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .order-summary {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .form-section h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .payment-method.active {
+            border-color: var(--primary-color);
+            background: rgba(255, 165, 0, 0.05);
+        }
+        
+        .payment-method input {
+            margin-right: 15px;
+        }
+        
+        .payment-method .payment-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: #666;
+        }
+        
+        .payment-method .payment-details {
+            flex: 1;
+        }
+        
+        .payment-method .payment-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .payment-method .payment-details p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .summary-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .summary-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .summary-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .summary-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .summary-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .summary-item-details {
+            flex: 1;
+        }
+        
+        .summary-item-details h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .summary-item-details p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .summary-totals {
+            margin-top: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .place-order-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .delivery-time {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .delivery-time-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .delivery-time-option:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .delivery-time-option.active {
+            border-color: var(--primary-color);
+            background: rgba(255, 165, 0, 0.05);
+        }
+        
+        .delivery-time-option input {
+            display: none;
+        }
+        
+        .delivery-time-option i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .delivery-time-option h4 {
+            margin-bottom: 5px;
+        }
+        
+        .delivery-time-option p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .delivery-time {
+                flex-direction: column;
+            }
+            
+            .order-steps {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .step {
+                flex: 1 0 50%;
+            }
+            
+            .order-steps::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MO Mayai</h1>
+                <p>Fresh Eggs Delivered to Your Doorstep</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a></li>
+                    <li><a href="login.html" id="auth-link">Login</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="order-container">
+        <div class="container">
+            <div class="order-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Delivery Info</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Payment</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Confirmation</div>
+                </div>
+            </div>
+            
+            <div class="order-content">
+                <div class="order-form">
+                    <form id="delivery-form">
+                        <div class="form-section">
+                            <h3>Delivery Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" id="full-name" name="full-name" required placeholder="Enter your full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Delivery Address</label>
+                                <textarea id="address" name="address" rows="3" required placeholder="Enter your full delivery address"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="district">District</label>
+                                <select id="district" name="district" required>
+                                    <option value="">Select District</option>
+                                    <option value="mjini">Mjini Magharibi</option>
+                                    <option value="kaskazini">Kaskazini Unguja</option>
+                                    <option value="kusini">Kusini Unguja</option>
+                                    <option value="kaskazini-p">Kaskazini Pemba</option>
+                                    <option value="kusini-p">Kusini Pemba</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Delivery Time</label>
+                                <div class="delivery-time">
+                                    <label class="delivery-time-option active">
+                                        <input type="radio" name="delivery-time" value="standard" checked>
+                                        <i class="fas fa-clock"></i>
+                                        <h4>Standard</h4>
+                                        <p>Next day delivery</p>
+                                    </label>
+                                    <label class="delivery-time-option">
+                                        <input type="radio" name="delivery-time" value="express">
+                                        <i class="fas fa-bolt"></i>
+                                        <h4>Express</h4>
+                                        <p>Same day delivery (before 5pm)</p>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="notes">Delivery Notes (Optional)</label>
+                                <textarea id="notes" name="notes" rows="2" placeholder="Any special instructions for delivery"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Payment Method</h3>
+                            
+                            <div class="payment-methods">
+                                <label class="payment-method active">
+                                    <input type="radio" name="payment-method" value="mobile-money" checked>
+                                    <div class="payment-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="payment-details">
+                                        <h4>Mobile Money</h4>
+                                        <p>Pay with M-Pesa, Tigo Pesa, or Airtel Money</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="payment-method">
+                                    <input type="radio" name="payment-method" value="cash">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div class="payment-details">
+                                        <h4>Cash on Delivery</h4>
+                                        <p>Pay when you receive your order</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="payment-method">
+                                    <input type="radio" name="payment-method" value="card">
+                                    <div class="payment-icon">
+                                        <i class="far fa-credit-card"></i>
+                                    </div>
+                                    <div class="payment-details">
+                                        <h4>Credit/Debit Card</h4>
+                                        <p>Pay with Visa, Mastercard, or other cards</p>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div id="mobile-money-details" class="form-group" style="margin-top: 20px;">
+                                <label for="mobile-provider">Mobile Money Provider</label>
+                                <select id="mobile-provider" name="mobile-provider">
+                                    <option value="">Select Provider</option>
+                                    <option value="mpesa">M-Pesa</option>
+                                    <option value="tigo">Tigo Pesa</option>
+                                    <option value="airtel">Airtel Money</option>
+                                </select>
+                                
+                                <div class="form-row" style="margin-top: 15px;">
+                                    <div class="form-group">
+                                        <label for="mobile-number">Phone Number</label>
+                                        <input type="tel" id="mobile-number" name="mobile-number" placeholder="Enter phone number">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="card-details" class="form-group" style="display: none; margin-top: 20px;">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-number">Card Number</label>
+                                        <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-name">Name on Card</label>
+                                        <input type="text" id="card-name" name="card-name" placeholder="Full name on card">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-expiry">Expiry Date</label>
+                                        <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-cvv">CVV</label>
+                                        <input type="text" id="card-cvv" name="card-cvv" placeholder="123">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn place-order-btn">Place Order</button>
+                    </form>
+                </div>
+                
+                <div class="order-summary">
+                    <div class="summary-card">
+                        <h3>Order Summary</h3>
+                        
+                        <div class="summary-items" id="order-items">
+                            <!-- Order items will be loaded from cart -->
+                        </div>
+                        
+                        <div class="summary-totals">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="order-subtotal">TZS 0</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span>Delivery Fee:</span>
+                                <span id="delivery-fee">TZS 3,000</span>
+                            </div>
+                            
+                            <div class="summary-row summary-total">
+                                <span>Total:</span>
+                                <span id="order-total">TZS 0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>MO Mayai</h3>
+                <p>Fresh egg delivery service in Zanzibar</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +255 123 456 789</p>
+                <p><i class="fas fa-envelope"></i> info@momayai.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Zanzibar, Tanzania</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 MO Mayai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module">
+        import { database, ref, push, set, get, auth, onAuthStateChanged } from './js/firebase-config.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load order summary
+            loadOrderSummary();
+            
+            // Payment method toggle
+            const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    document.getElementById('mobile-money-details').style.display = 'none';
+                    document.getElementById('card-details').style.display = 'none';
+                    
+                    if (this.value === 'mobile-money') {
+                        document.getElementById('mobile-money-details').style.display = 'block';
+                    } else if (this.value === 'card') {
+                        document.getElementById('card-details').style.display = 'block';
+                    }
+                });
+            });
+            
+            // Delivery time option selection
+            const deliveryOptions = document.querySelectorAll('.delivery-time-option');
+            deliveryOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelector('.delivery-time-option.active').classList.remove('active');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Form submission
+            const orderForm = document.getElementById('delivery-form');
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                placeOrder();
+            });
+        });
+        
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItemsContainer = document.getElementById('order-items');
+            const orderSubtotal = document.getElementById('order-subtotal');
+            const orderTotal = document.getElementById('order-total');
+            
+            if (cart.length === 0) {
+                orderItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+                orderSubtotal.textContent = 'TZS 0';
+                orderTotal.textContent = 'TZS 0';
+                return;
+            }
+            
+            orderItemsContainer.innerHTML = '';
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'summary-item';
+                
+                itemElement.innerHTML = `
+                    <div class="summary-item-image">
+                        <img src="${item.imageUrl || 'images/placeholder.jpg'}" alt="${item.name}">
+                    </div>
+                    <div class="summary-item-details">
+                        <h4>${item.name}</h4>
+                        <p>TZS ${item.price.toLocaleString()} x ${item.quantity}</p>
+                        <p>TZS ${(item.price * item.quantity).toLocaleString()}</p>
+                    </div>
+                `;
+                
+                orderItemsContainer.appendChild(itemElement);
+                subtotal += item.price * item.quantity;
+            });
+            
+            const deliveryFee = 3000;
+            const total = subtotal + deliveryFee;
+            
+            orderSubtotal.textContent = `TZS ${subtotal.toLocaleString()}`;
+            orderTotal.textContent = `TZS ${total.toLocaleString()}`;
+        }
+        
+        async function placeOrder() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add some items before placing an order.');
+                return;
+            }
+            
+            const form = document.getElementById('delivery-form');
+            const formData = new FormData(form);
+            const orderData = {
+                customerInfo: {
+                    name: formData.get('full-name'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address'),
+                    district: formData.get('district'),
+                    notes: formData.get('notes')
+                },
+                deliveryInfo: {
+                    method: document.querySelector('input[name="delivery-time"]:checked').value,
+                    fee: 3000
+                },
+                paymentInfo: {
+                    method: document.querySelector('input[name="payment-method"]:checked').value,
+                    details: {}
+                },
+                items: cart,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Add payment details based on method
+            const paymentMethod = orderData.paymentInfo.method;
+            if (paymentMethod === 'mobile-money') {
+                orderData.paymentInfo.details = {
+                    provider: formData.get('mobile-provider'),
+                    phone: formData.get('mobile-number')
+                };
+            } else if (paymentMethod === 'card') {
+                orderData.paymentInfo.details = {
+                    cardNumber: formData.get('card-number'),
+                    cardName: formData.get('card-name'),
+                    expiry: formData.get('card-expiry'),
+                    cvv: formData.get('card-cvv')
+                };
+            }
+            
+            // Get current user if logged in
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    orderData.userId = user.uid;
+                }
+                
+                // Save order to Firebase
+                const newOrderRef = push(ref(database, 'orders'));
+                set(newOrderRef, orderData)
+                    .then(() => {
+                        // Clear cart
+                        localStorage.removeItem('cart');
+                        // Redirect to confirmation page
+                        window.location.href = `order-confirmation.html?orderId=${newOrderRef.key}`;
+                    })
+                    .catch((error) => {
+                        console.error("Error placing order:", error);
+                        alert('There was an error placing your order. Please try again.');
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

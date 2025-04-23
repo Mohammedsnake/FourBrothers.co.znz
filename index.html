@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MO Mayai - Fresh Egg Delivery in Zanzibar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>MO Mayai</h1>
+                <p>Fresh Eggs Delivered to Your Doorstep</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a></li>
+                    <li><a href="login.html" id="auth-link">Login</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Fresh Eggs Delivered Daily</h2>
+            <p>Order now and get your eggs delivered to your home or business in Zanzibar</p>
+            <a href="shop.html" class="btn">Order Now</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature-box">
+                <i class="fas fa-truck"></i>
+                <h3>Fast Delivery</h3>
+                <p>Get your eggs delivered within 24 hours</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-egg"></i>
+                <h3>Fresh Quality</h3>
+                <p>Farm-fresh eggs from healthy chickens</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>Affordable Prices</h3>
+                <p>Competitive prices for bulk and retail</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-preview">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="products-grid" id="featured-products">
+                <!-- Products will be loaded from Firebase -->
+            </div>
+            <a href="shop.html" class="btn">View All Products</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>MO Mayai</h3>
+                <p>Fresh egg delivery service in Zanzibar</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +255 123 456 789</p>
+                <p><i class="fas fa-envelope"></i> info@momayai.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Zanzibar, Tanzania</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 MO Mayai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
